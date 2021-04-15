@@ -4,7 +4,7 @@ const CarCardStyle = makeStyles({
     root: {
       minWidth: 300,
       minHeight: 300,
-      maxWidth: 345,
+      maxWidth: 300,
       margin: 20
     },
     title: {
