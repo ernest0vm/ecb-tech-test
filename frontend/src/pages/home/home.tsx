@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ApiManager } from '../../managers/api-manager'
 import CarCard from '../../components/card/car-card'
 import HomeStyle from './home-style'
-import { Box, Grid, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Grid, Typography, IconButton, Icon, Button } from '@material-ui/core'
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 const api = (new ApiManager())
 
@@ -26,17 +27,19 @@ const Home = () => {
     const classes = HomeStyle();
     return (
         <div>
-            <Box boxShadow={2}>
-                <div className={classes.bar}>
-                    <Grid container >
-                        <Grid item xs={6}>
-                            <Typography className={classes.title}>
-                                Rating Cars
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </div>
-            </Box>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" className={classes.title}>
+                        Rating Cars
+                    </Typography>
+                    <div className={classes.grow} />
+                    <Button startIcon={<RefreshIcon />}
+                        variant="outlined" 
+                        className={classes.btn}
+                        onClick={RequestData}
+                        >Refresh</Button>
+                </Toolbar>
+            </AppBar>
             <Grid item xs={12}>
                 <Grid container justify="center">
                     {cars.map((car: any) => (
