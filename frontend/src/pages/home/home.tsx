@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ApiManager } from '../../managers/api-manager'
 import CarCard from '../../components/card/car-card'
 import HomeStyle from './home-style'
-import { AppBar, Toolbar, Grid, Typography, IconButton, Icon, Button } from '@material-ui/core'
+import { AppBar, Toolbar, Grid, Typography, Button, Box } from '@material-ui/core'
 import RefreshIcon from '@material-ui/icons/Refresh';
 
 const api = (new ApiManager())
@@ -40,6 +40,7 @@ const Home = () => {
                         >Refresh</Button>
                 </Toolbar>
             </AppBar>
+            <Box style={{height: '20px'}}></Box>
             <Grid item xs={12}>
                 <Grid container justify="center">
                     {cars.map((car: any) => (
