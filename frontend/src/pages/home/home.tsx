@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ApiManager } from '../../managers/api-manager'
 import CarCard from '../../components/card/car-card'
 import HomeStyle from './home-style'
@@ -19,6 +19,10 @@ const Home = () => {
         })
     }
 
+    useEffect(() => {
+        RequestData()
+    }, [])
+
     const classes = HomeStyle();
     return (
         <div>
@@ -29,9 +33,6 @@ const Home = () => {
                             <Typography className={classes.title}>
                                 Rating Cars
                             </Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <button onClick={(e) => RequestData()}>get data</button>
                         </Grid>
                     </Grid>
                 </div>
