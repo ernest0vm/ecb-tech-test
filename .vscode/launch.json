@@ -19,7 +19,7 @@
         {
             "type": "node-terminal",
             "request": "launch",
-            "name": "Run Fronted",
+            "name": "Run Frontend",
             "command": " cd ${workspaceFolder}/frontend && npm run start",
         },
         {
