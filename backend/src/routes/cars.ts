@@ -5,6 +5,7 @@ const api = express.Router()
 const morgan = require('morgan')
 
 // API routes declaration
+api.options('/cars')
 api.get('/cars', [morgan('tiny')] , CarsController.getCars)
 
 module.exports = api

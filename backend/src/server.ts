@@ -1,8 +1,12 @@
 import express from 'express';
+import Cors from './middlewares/cors';
 
 const app = express();
 const port = 3001;
 const cars = require ("./routes/cars");
+
+// Config
+app.use(Cors)
 
 // Routes
 app.use(cars);
