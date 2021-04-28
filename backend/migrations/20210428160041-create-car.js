@@ -1,4 +1,7 @@
 'use strict';
+
+const { DataTypes } = require("sequelize");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Cars', {
@@ -7,12 +10,6 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      car_id: {
-        type: Sequelize.BIGINT
-      },
-      car_uuid: {
-        type: Sequelize.UUID
       },
       description: {
         type: Sequelize.STRING
@@ -31,14 +28,6 @@ module.exports = {
       },
       image: {
         type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
