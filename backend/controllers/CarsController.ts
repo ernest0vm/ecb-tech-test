@@ -6,9 +6,9 @@ export class CarsController {
     static async getCars(req, res, next) {
         try {
             const db = await dbAccess(configDb)
-            const c = await db.Car.getAll()
-            c.sort((a, b) => a.id - b.id)
-            return res.status(200).send(c)
+            const carsList = await db.Car.getAll()
+            carsList.sort((a, b) => a.id - b.id)
+            return res.status(200).send(carsList)
         } catch (e) {
             next(e)
         }
@@ -19,7 +19,7 @@ export class CarsController {
             const body = req.body
             const db = await dbAccess(configDb)
 
-            const c = await db.Car.create({
+            const car = await db.Car.create({
                 description: body.description,
                 make: body.make,
                 model: body.model,
@@ -28,7 +28,7 @@ export class CarsController {
                 image: body.image
             })
 
-            return res.status(201).send(c)
+            return res.status(201).send(car)
         } catch (e) {
             next(e)
         }
@@ -39,9 +39,11 @@ export class CarsController {
             const id = req.params.id
             const db = await dbAccess(configDb)
 
-            const c = await db.Car.findById(id)
-
-            return res.status(200).send(c)
+            const car = await db.Car.findById(id)
+            if (car) {
+                return res.status(200).send(car)
+            }
+            return res.status(404).send()
         } catch (e) {
             next(e)
         }
