@@ -1,10 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser'
 import Cors from './middlewares/cors';
-import db from './dbAccess';
 import morgan from 'morgan';
+import setupDatabase from './lib/db'
 import cars from "./routes/cars";
 
+const config = require('./dbConfig')
 const app = express();
 const port = 3001;
 
@@ -15,8 +16,9 @@ app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(bodyParser.json({ limit: "10mb" }));
 
 async function loadConfig () {
+  const sequelize = setupDatabase(config)
   try {
-    await db.authenticate();
+    await sequelize.authenticate();
     console.log('DB connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
