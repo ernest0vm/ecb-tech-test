@@ -62,8 +62,9 @@ export class CarsController {
                 car.km = body.km
                 car.image = body.image
                 car.estimatedate = body.estimatedate
-                car.save()
-                return res.status(200).send(car)
+                await car.save()
+                const updatedCar = await db.Car.findByPk(carId)
+                return res.status(200).send(updatedCar)
             }
             return res.status(404).send()
         } catch (e) {
