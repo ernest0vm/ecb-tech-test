@@ -45,7 +45,7 @@ const Home = () => {
                 <Grid container justify="center">
                     {cars.map((car: any) => (
                         <Grid key={car.id} item>
-                            <CarCard {...car} />
+                            <CarCard data={car} />
                         </Grid>
                     ))}
                 </Grid>
